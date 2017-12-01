@@ -1,0 +1,15 @@
+
+.ant-layout-content {
+  padding: 0 50px;
+}
+
+.ant-layout-footer {
+  text-align: center;
+  background: rgb(64, 64, 64);
+  color: silver;
+}
+
+.logo {
+  height: 54px;
+  padding-top: 6px;
+}
