@@ -43,7 +43,8 @@ class ConvertFunc():
                 # 遍历所有文件
                 for file in files:
                     self.full_file.append(os.path.join(root, file))
-                    convert_part_list.append(os.path.join(root, file + '.html'))
+                    file_dict = {'key': os.path.join(root, file + '.html')}
+                    convert_part_list.append(file_dict)
             self.convert_path[item] = convert_part_list
 
             remove_file_list = []
@@ -65,7 +66,7 @@ class ConvertFunc():
 
 
         # 将文件信息存储到json文件里
-        with codecs.open(os.path.join(self.convert_dir_path, 'file_list.json'), 'w') as f:
+        with codecs.open(os.path.join(self.convert_dir_path, 'file_list.json'), 'w', encoding='utf-8') as f:
             json.dump(self.convert_path, f, ensure_ascii=False)
 
     # Word转HTML
