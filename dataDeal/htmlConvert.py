@@ -31,7 +31,7 @@ class ConvertFunc():
                 os.mkdir(original_dir_path)
 
             # 目标文件夹
-            convert_dir_path =  original_dir_path.replace(self.default_path, self.convert_dir_path)
+            convert_dir_path = original_dir_path.replace(self.default_path, self.convert_dir_path)
             if not os.path.exists(convert_dir_path):
                 os.mkdir(convert_dir_path)
             for root, dirs, files in os.walk(original_dir_path):
@@ -42,9 +42,9 @@ class ConvertFunc():
                         os.mkdir(convert_child_path)
                 # 遍历所有文件
                 for file in files:
-                    convert_part_list.append(os.path.join(root, file))
                     self.full_file.append(os.path.join(root, file))
-
+                    file_dict = {'key': os.path.join(root, file + '.html')}
+                    convert_part_list.append(file_dict)
             self.convert_path[item] = convert_part_list
 
             remove_file_list = []
@@ -59,11 +59,14 @@ class ConvertFunc():
                     remove_file_list.append(os.path.join(root_conv, file))
 
             for remove_file in remove_file_list:
-                if not os.path.exists(remove_file.replace(self.convert_dir_path, self.default_path)):
+                judge_file = remove_file.replace(self.convert_dir_path, self.default_path).replace('.html', '')
+                if not os.path.exists(judge_file):
                     os.remove(remove_file)
 
+
+
         # 将文件信息存储到json文件里
-        with codecs.open(os.path.join(self.convert_dir_path, 'file_list.json'), 'w') as f:
+        with codecs.open(os.path.join(self.convert_dir_path, 'file_list.json'), 'w', encoding='utf-8') as f:
             json.dump(self.convert_path, f, ensure_ascii=False)
 
     # Word转HTML
