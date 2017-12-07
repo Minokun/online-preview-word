@@ -43,7 +43,8 @@ class ConvertFunc():
                 # 遍历所有文件
                 for file in files:
                     self.full_file.append(os.path.join(root, file))
-                    file_dict = {'key': os.path.join(root, file + '.html')}
+                    file_key = os.path.join(root.replace(self.default_path, 'html/'), file + '.html')
+                    file_dict = {'key': file_key, 'name': file}
                     convert_part_list.append(file_dict)
             self.convert_path[item] = convert_part_list
 
