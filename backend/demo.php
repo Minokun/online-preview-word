@@ -1,4 +1,6 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+date_default_timezone_set('Asia/Shanghai');
 include 'db.class.php';
 
 $fields = array(
