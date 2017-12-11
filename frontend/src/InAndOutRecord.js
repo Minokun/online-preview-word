@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Form, DatePicker, Input, Col, Button } from 'antd';
+import { Form, DatePicker, Input, Col, Button, message } from 'antd';
 const FormItem = Form.Item;
 const { TextArea } = Input;
-
 
 class InAndOutRecordForm extends Component {
   handleSearch = (e) => {
@@ -18,16 +17,20 @@ class InAndOutRecordForm extends Component {
       const user_name = '&user_name=' + fieldsValue['user_name'];
       const car = '&car=' + fieldsValue['car'];
       const remark = '&remark=' + fieldsValue['remark'];
-
       const values = record_date + out_time + back_time + user_name + car + remark;
 
-      fetch('http://localhost/qxj/online-preview-word/backend/demo.php', {method: "POST",
+      fetch('http://172.16.2.116/qxj/online-preview-word/backend/demo.php', {method: "POST",
                 mode: "cors",
                 headers:{  
                     'Content-Type': 'application/x-www-form-urlencoded'  
                 },  
                 body: values}).then(function(response) {  
-                  console.log('-----: ', response);
+                  if(response.status === 200){
+                      message.success('成功');
+                  }else{
+                      message.error('失败');
+                      return;
+                  }
             },function(error){   
                console.log('error: ', error);
             })

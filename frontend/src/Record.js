@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
-import { Table } from 'antd';
+import { Table, Modal} from 'antd';
+import recordStyle from './Record.css';
 const { Column } = Table;
+const info = Modal.info;
 
 class Record extends Component { 
 	state = {
 		datas: [],
+	}
+	showModal(name,key){
+	    info({
+	    	title:name,
+	    	content:(<div styke={{height:'100%',width:'100%'}}>
+		          	<iframe title={name} src={key} style={{width:'100%',border:'0',marginwidth:'0',marginheight:'0',frameborder:'no'}}></iframe></div>),
+	    	iconType:''
+	    });
 	}
 	componentDidMount(){
 		let menuName = this.props.menuName;
@@ -39,13 +49,20 @@ class Record extends Component {
 	// )；
 	render (){
 		return (
+			<div>
 			  <Table size="small" dataSource={this.state.datas}>
 			    <Column
 			      title="文件"
 			      dataIndex = "key"
-			      key="key"
+			      key="name"
+			      render={(text, record) => (
+			        <span>
+			          <a href="#" onClick={()=>this.showModal(record.name,record.key)}>{record.name}</a>
+			        </span>
+			      )}
 			    />
-			  </Table>	
+			  </Table>
+			</div>
 		);
 	}
 }

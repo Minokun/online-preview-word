@@ -1,0 +1,21 @@
+
+.ant-confirm .ant-modal-body {
+    padding: 5px 15px;
+}
+
+.ant-confirm-body .ant-confirm-content {
+    margin-top: 8px;
+}
+
+.ant-confirm .ant-confirm-btns {
+	margin-top: 5px;
+}
+
+.ant-modal {
+	width:700px !important;
+}
+
+.ant-confirm-body .ant-confirm-content {
+    border-top: 2px solid #e1e1e1;
+    margin-left: 0px;
+}
