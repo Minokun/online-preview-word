@@ -14,8 +14,16 @@
   padding-top: 6px;
 }
 
-img{
-  position:absolute;
-  height: 54px;
-  padding-top: 6px;
+.btn:hover .erweima{
+	display: block;
+}
+
+.erweima{
+	display: none;
+    position: absolute;
+    height: 54px;
+    left: 15px;
+    padding-top: 6px;
+    top: 25px;
+    z-index: 999;
 }

@@ -6,6 +6,7 @@ from settings import *
 import pandas as pd
 import json
 import shutil
+import codecs
 
 class ConvertFunc():
     # 源文件根目录
@@ -43,7 +44,8 @@ class ConvertFunc():
                 # 遍历所有文件
                 for file in files:
                     self.full_file.append(os.path.join(root, file))
-                    file_dict = {'key': os.path.join(root, file + '.html')}
+                    file_key = os.path.join(root.replace(self.default_path, 'html/'), file + '.html')
+                    file_dict = {'key': file_key, 'name': file}
                     convert_part_list.append(file_dict)
             self.convert_path[item] = convert_part_list
 
@@ -71,10 +73,17 @@ class ConvertFunc():
 
     # Word转HTML
     def wordToHtml(self, file):
+        os.chdir(os.path.dirname(file))
+        file_name = os.path.basename(file)
         try:
             doc = self.word.Documents.Open(file)
-            doc.SaveAs(file.replace(self.default_path, self.convert_dir_path) + '.html', 10)
+            convert_file = file.replace(self.default_path, self.convert_dir_path) + '.html'
+            doc.SaveAs(convert_file, 10)
             doc.Close()
+            with codecs.open(convert_file, 'r') as f:
+                content = f.read()
+            with codecs.open(convert_file, 'w', encoding='utf-8') as f:
+                f.write(content)
         except Exception as e:
             with codecs.open('error.log', 'w+a') as f:
                 f.write(e)
@@ -83,12 +92,29 @@ class ConvertFunc():
 
     # excel转html
     def excelToHtml(self, file):
-        data = pd.read_excel(file)
-        data.to_html(file.replace(self.default_path, self.convert_dir_path) + '.html', col_space=80, justify='left', border=2)
+        os.chdir(os.path.dirname(file))
+        file_name = os.path.basename(file)
+        data = pd.read_excel(file_name, encoding='gbk')
+        convert_file = file.replace(self.default_path, self.convert_dir_path) + '.html'
+        data.to_html(convert_file, col_space=80, justify='left', border=2)
+        with codecs.open(convert_file, 'r') as f:
+            content = f.read()
+        with codecs.open(convert_file, 'w', encoding='utf-8') as f:
+            f.write(content)
 
     def csvToHtml(self, file):
-        data = pd.read_csv(file)
-        data.to_html(file.replace(self.default_path, self.convert_dir_path) + '.html', col_space=80, justify='left', border=2)
+        file_name = os.path.basename(file)
+        os.chdir(os.path.dirname(file))
+        data = pd.read_csv(file_name)
+        convert_file = file.replace(self.default_path, self.convert_dir_path) + '.html'
+        data.to_html(convert_file, col_space=80, justify='left', border=2)
+        self.ConvertEncoding(convert_file)
+
+    def ConvertEncoding(self, convert_file):
+        with codecs.open(convert_file, 'r') as f:
+            content = f.read().encode('gbk').decode('utf-8')
+        with codecs.open(convert_file, 'w', encoding='utf-8') as f:
+            f.write(content)
 
     # 运行程序
     def process(self):

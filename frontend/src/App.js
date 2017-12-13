@@ -45,8 +45,8 @@ class App extends Component {
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>{this.state.menuName}</Breadcrumb.Item>
           </Breadcrumb>
-          <div style={{float: 'right',margin: '10px 0'}}>
-            <Button type="primary" className="btn">外出登记</Button>
+          <div style={{float: 'right',margin: '10px 0',position:'relative'}} className='btn'>
+            <Button type="primary">外出登记</Button>
             <img className='erweima' src={logo} />
           </div>
           <div style={{clear: 'both'}}></div>
