@@ -8,11 +8,7 @@
 }
 
 .ant-confirm .ant-confirm-btns {
-	margin-top: 5px;
-}
-
-.ant-modal {
-	width:700px !important;
+	margin-top: 1px;
 }
 
 .ant-confirm-body .ant-confirm-content {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Modal} from 'antd';
-import recordStyle from './Record.css';
+import './Record.css';
 const { Column } = Table;
 const info = Modal.info;
 
@@ -10,10 +10,13 @@ class Record extends Component {
 	}
 	showModal(name,key){
 	    info({
+	    	wrapClassName:'web',
 	    	title:name,
-	    	content:(<div styke={{height:'100%',width:'100%'}}>
-		          	<iframe title={name} src={key} style={{width:'100%',border:'0',marginwidth:'0',marginheight:'0',frameborder:'no'}}></iframe></div>),
-	    	iconType:''
+	    	content:(<div style={{height:'100%',width:'100%'}}>
+		          	<iframe title={name} src={key} style={{width:'100%',height:'400px',border:'0',marginwidth:'0',marginheight:'0',frameborder:'no'}}></iframe></div>),
+	    	iconType:'',
+	    	okText: '好的',
+	    	width:'auto'
 	    });
 	}
 	componentDidMount(){
