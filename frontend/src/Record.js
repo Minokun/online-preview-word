@@ -13,9 +13,9 @@ class Record extends Component {
 	    	wrapClassName:'web',
 	    	title:name,
 	    	content:(<div style={{height:'100%',width:'100%'}}>
-		          	<iframe title={name} src={key} style={{width:'100%',height:'400px',border:'0',marginwidth:'0',marginheight:'0',frameborder:'no'}}></iframe></div>),
+		          	<iframe title={name} src={key} style={{width:'100%',height:'1400px',border:'0',marginwidth:'0',marginheight:'0',frameborder:'no'}}></iframe></div>),
 	    	iconType:'',
-	    	okText: '好的',
+	    	okText: '关闭',
 	    	width:'auto'
 	    });
 	}
@@ -53,7 +53,7 @@ class Record extends Component {
 	render (){
 		return (
 			<div>
-			  <Table size="small" dataSource={this.state.datas}>
+			  <Table size="default" dataSource={this.state.datas}>
 			    <Column
 			      title="文件"
 			      dataIndex = "key"

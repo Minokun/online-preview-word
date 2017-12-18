@@ -5,6 +5,7 @@
 
 .ant-confirm-body .ant-confirm-content {
     margin-top: 8px;
+    height: 1400px;
 }
 
 .ant-confirm .ant-confirm-btns {
@@ -15,3 +16,11 @@
     border-top: 2px solid #e1e1e1;
     margin-left: 0px;
 }
+
+.ant-modal-content {
+	margin-top: 80px;
+	border: solid 2px gray;
+	border-radius: 30px;
+}
+
+

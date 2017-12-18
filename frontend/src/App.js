@@ -61,7 +61,7 @@ class App extends Component {
             <Button type="primary" onClick={() => {this.showQrcode()}}>外出登记</Button>
           </div>
           <div style={{clear: 'both'}}></div>
-          <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+          <div style={{ background: '#fff', padding: 24, minHeight: 1700}}>
             <Record  menuName={this.state.menuName}/>
           </div>
 
