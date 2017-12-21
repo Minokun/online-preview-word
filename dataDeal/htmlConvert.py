@@ -80,10 +80,10 @@ class ConvertFunc():
             convert_file = file.replace(self.default_path, self.convert_dir_path) + '.html'
             doc.SaveAs(convert_file, 10)
             doc.Close()
-            with codecs.open(convert_file, 'r') as f:
-                content = f.read()
-            with codecs.open(convert_file, 'w', encoding='utf-8') as f:
-                f.write(content)
+            # with codecs.open(convert_file, 'r') as f:
+            #     content = f.read()
+            # with codecs.open(convert_file, 'w', encoding='utf-8') as f:
+            #     f.write(content)
         except Exception as e:
             with codecs.open('error.log', 'w+a') as f:
                 f.write(e)
@@ -97,10 +97,10 @@ class ConvertFunc():
         data = pd.read_excel(file_name, encoding='gbk')
         convert_file = file.replace(self.default_path, self.convert_dir_path) + '.html'
         data.to_html(convert_file, col_space=80, justify='left', border=2)
-        with codecs.open(convert_file, 'r') as f:
-            content = f.read()
-        with codecs.open(convert_file, 'w', encoding='utf-8') as f:
-            f.write(content)
+        # with codecs.open(convert_file, 'r') as f:
+        #     content = f.read()
+        # with codecs.open(convert_file, 'w', encoding='utf-8') as f:
+        #     f.write(content)
 
     def csvToHtml(self, file):
         file_name = os.path.basename(file)
@@ -108,7 +108,7 @@ class ConvertFunc():
         data = pd.read_csv(file_name)
         convert_file = file.replace(self.default_path, self.convert_dir_path) + '.html'
         data.to_html(convert_file, col_space=80, justify='left', border=2)
-        self.ConvertEncoding(convert_file)
+        # self.ConvertEncoding(convert_file)
 
     def ConvertEncoding(self, convert_file):
         with codecs.open(convert_file, 'r') as f:
