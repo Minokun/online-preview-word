@@ -151,5 +151,5 @@ class ConvertFunc():
 
 if __name__ == "__main__":
     convertClass = ConvertFunc()
-    convertClass.process()
     convertClass.exportOutTable()
+    convertClass.process()
