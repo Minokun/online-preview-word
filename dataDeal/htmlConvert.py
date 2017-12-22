@@ -133,6 +133,23 @@ class ConvertFunc():
 
         self.word.Quit()
 
+    # 导出出入登记表
+    def exportOutTable(self):
+        import pandas as pd
+        from datetime import datetime
+        from sqlalchemy import create_engine
+        engine = create_engine('mysql://root:@localhost:3306/weather_station?charset=utf8', echo=False)
+        conn = engine.connect()
+        sql = '''
+            select * from qxj_out_record
+        '''
+        df = pd.read_sql(sql, conn)
+        del(df['id'])
+        del(df['create_date'])
+        df = df.rename(columns={'user_name' : '姓名', 'record_date' : '日期', 'out_time' : '出时间', 'back_time' : '归时间', 'car' : '公车', 'remark' : '事由'})
+        df.to_excel('F:\气象公开\出入登记\外出登记表.xlsx', index=False)
+
 if __name__ == "__main__":
     convertClass = ConvertFunc()
     convertClass.process()
+    convertClass.exportOutTable()
