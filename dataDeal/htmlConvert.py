@@ -97,10 +97,10 @@ class ConvertFunc():
         data = pd.read_excel(file_name, encoding='gbk')
         convert_file = file.replace(self.default_path, self.convert_dir_path) + '.html'
         data.to_html(convert_file, col_space=80, justify='left', border=2)
-        # with codecs.open(convert_file, 'r') as f:
-        #     content = f.read()
-        # with codecs.open(convert_file, 'w', encoding='utf-8') as f:
-        #     f.write(content)
+        with codecs.open(convert_file, 'r') as f:
+            content = f.read()
+        with codecs.open(convert_file, 'w', encoding='utf-8') as f:
+            f.write(content)
 
     def csvToHtml(self, file):
         file_name = os.path.basename(file)

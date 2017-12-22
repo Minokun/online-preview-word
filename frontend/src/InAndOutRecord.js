@@ -19,7 +19,7 @@ class InAndOutRecordForm extends Component {
       const remark = '&remark=' + fieldsValue['remark'];
       const values = record_date + out_time + back_time + user_name + car + remark;
 
-      fetch('http://172.16.2.116/qxj/online-preview-word/backend/demo.php', {method: "POST",
+      fetch('http://localhost:86/opw/demo.php', {method: "POST",
                 mode: "cors",
                 headers:{  
                     'Content-Type': 'application/x-www-form-urlencoded'  
